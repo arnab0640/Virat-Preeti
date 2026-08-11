@@ -1163,29 +1163,49 @@ footer span.heart {
     animation: heartbeat 1.5s infinite;
 }
 
+/* Touch & Mobile OS Optimizations (iOS Safari & Android Chrome) */
+button, a, .quiz-option, .polaroid-card, .story-dot, .music-disc {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+body {
+    -webkit-text-size-adjust: 100%;
+    overscroll-behavior-y: none;
+}
+
 /* Media Queries / Mobile Responsiveness */
 @media (max-width: 768px) {
+    .music-player-widget {
+        top: max(25px, env(safe-area-inset-top));
+        right: max(15px, env(safe-area-inset-right));
+        padding: 6px 14px 6px 10px;
+    }
+
     .story-content-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     
     .story-card-3d {
-        min-height: 680px;
+        min-height: 650px;
     }
 
-    .music-player-widget {
-        top: 35px;
-        right: 15px;
-        padding: 6px 14px 6px 10px;
+    .story-image-box {
+        aspect-ratio: 4 / 3;
     }
-    
+
+    .story-card-front, .story-card-back {
+        padding: 20px 15px;
+    }
+
     .timeline::before {
         left: 20px;
     }
     
     .timeline-item {
         width: 100%;
-        padding-left: 50px;
+        padding-left: 45px;
         padding-right: 0;
         text-align: left !important;
     }
@@ -1207,3 +1227,39 @@ footer span.heart {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-title span.couple-names {
+        font-size: 3.2rem;
+    }
+
+    .hero-avatar-frame {
+        width: 150px;
+        height: 150px;
+    }
+
+    .counter-number {
+        font-size: 2.2rem;
+    }
+
+    .polaroid-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .envelope-card {
+        padding: 30px 20px;
+    }
+
+    .story-card-3d {
+        min-height: 690px;
+    }
+
+    footer {
+        padding-bottom: max(30px, env(safe-area-inset-bottom));
+    }
+}
+

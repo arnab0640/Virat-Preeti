@@ -311,6 +311,35 @@ document.addEventListener('DOMContentLoaded', () => {
     if (flipCardBtn && storyCard3D) flipCardBtn.addEventListener('click', () => storyCard3D.classList.add('flipped'));
     if (flipBackBtn && storyCard3D) flipBackBtn.addEventListener('click', () => storyCard3D.classList.remove('flipped'));
 
+    // Mobile Swipe Gesture Support for iOS & Android
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (storyCard3D) {
+        storyCard3D.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        storyCard3D.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+    }
+
+    function handleSwipe() {
+        const threshold = 40;
+        if (touchEndX < touchStartX - threshold) {
+            // Swiped Left -> Next Story
+            renderStory(currentStoryIndex + 1);
+            triggerConfetti();
+        }
+        if (touchEndX > touchStartX + threshold) {
+            // Swiped Right -> Prev Story
+            renderStory(currentStoryIndex - 1);
+            triggerConfetti();
+        }
+    }
+
     storyDots.forEach(dot => {
         dot.addEventListener('click', () => {
             const idx = parseInt(dot.getAttribute('data-index'));
