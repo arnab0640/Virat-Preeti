@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 isPlayingAudio = true;
                 if (musicDisc) musicDisc.classList.add('playing');
                 if (playerWidget) playerWidget.classList.add('playing');
-                if (musicStatus) musicStatus.textContent = 'Playing Love Song 🎵';
+                if (musicStatus) musicStatus.textContent = 'Playing Ed Sheeran — Perfect 🎵';
             }).catch(err => {
                 console.log('Audio autoplay prevented or error:', err);
             });
