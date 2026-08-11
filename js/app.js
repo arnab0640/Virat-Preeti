@@ -202,20 +202,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!bgAudio) return;
         const playerWidget = document.querySelector('.music-player-widget');
         if (play) {
+            bgAudio.load();
             bgAudio.play().then(() => {
                 isPlayingAudio = true;
                 if (musicDisc) musicDisc.classList.add('playing');
                 if (playerWidget) playerWidget.classList.add('playing');
                 if (musicStatus) musicStatus.textContent = 'Playing Ed Sheeran — Perfect 🎵';
             }).catch(err => {
-                console.log('Audio autoplay prevented or error:', err);
+                console.log('Audio playback waiting for user click:', err);
+                isPlayingAudio = false;
+                if (musicStatus) musicStatus.textContent = 'Tap to Play Ed Sheeran 🎵';
             });
         } else {
             bgAudio.pause();
             isPlayingAudio = false;
             if (musicDisc) musicDisc.classList.remove('playing');
             if (playerWidget) playerWidget.classList.remove('playing');
-            if (musicStatus) musicStatus.textContent = 'Paused';
+            if (musicStatus) musicStatus.textContent = 'Paused (Ed Sheeran — Perfect)';
         }
     }
 
