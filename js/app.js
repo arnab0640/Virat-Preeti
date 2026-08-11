@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Virat & Preeti - 2nd Anniversary Interactive Logic
+   Virat & Preeti - 2nd Anniversary Interactive Logic (Advanced)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,7 +28,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Background Heart Particle Canvas
+    // 2. Cursor Particle Sparkles
+    document.addEventListener('mousemove', (e) => {
+        if (Math.random() < 0.12) { // Sparkle frequency
+            createCursorSparkle(e.clientX, e.clientY);
+        }
+    });
+
+    function createCursorSparkle(x, y) {
+        const sparkle = document.createElement('div');
+        sparkle.textContent = Math.random() > 0.5 ? '✨' : '💕';
+        sparkle.style.position = 'fixed';
+        sparkle.style.left = `${x}px`;
+        sparkle.style.top = `${y}px`;
+        sparkle.style.fontSize = '14px';
+        sparkle.style.pointerEvents = 'none';
+        sparkle.style.zIndex = '9999';
+        sparkle.style.transition = 'all 0.8s ease-out';
+        sparkle.style.opacity = '1';
+        document.body.appendChild(sparkle);
+
+        setTimeout(() => {
+            sparkle.style.transform = `translateY(-25px) scale(1.4)`;
+            sparkle.style.opacity = '0';
+        }, 30);
+
+        setTimeout(() => {
+            sparkle.remove();
+        }, 830);
+    }
+
+    // 3. Background Heart & Falling Petals Canvas
     if (heartCanvas) {
         const ctx = heartCanvas.getContext('2d');
         let width = heartCanvas.width = window.innerWidth;
@@ -40,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const particles = [];
-        const particleCount = 45;
+        const particleCount = 50;
 
         class HeartParticle {
             constructor() {
@@ -103,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animateParticles();
     }
 
-    // 3. Live Counter & Countdown Logic
+    // 4. Live Counter & Countdown Logic
     function updateCounters() {
         const now = new Date();
 
@@ -161,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateCounters, 1000);
     updateCounters();
 
-    // 4. Music Toggle Controller
+    // 5. Music Toggle Controller
     if (musicBtn && bgAudio) {
         musicBtn.addEventListener('click', () => {
             toggleMusic(!isPlayingAudio);
@@ -170,10 +200,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function toggleMusic(play) {
         if (!bgAudio) return;
+        const playerWidget = document.querySelector('.music-player-widget');
         if (play) {
             bgAudio.play().then(() => {
                 isPlayingAudio = true;
                 if (musicDisc) musicDisc.classList.add('playing');
+                if (playerWidget) playerWidget.classList.add('playing');
                 if (musicStatus) musicStatus.textContent = 'Playing Love Song 🎵';
             }).catch(err => {
                 console.log('Audio autoplay prevented or error:', err);
@@ -182,11 +214,114 @@ document.addEventListener('DOMContentLoaded', () => {
             bgAudio.pause();
             isPlayingAudio = false;
             if (musicDisc) musicDisc.classList.remove('playing');
+            if (playerWidget) playerWidget.classList.remove('playing');
             if (musicStatus) musicStatus.textContent = 'Paused';
         }
     }
 
-    // 5. Polaroid Lightbox Modal
+    // ==========================================================================
+    // 6. INTERACTIVE 1-BY-1 PHOTO STORYBOOK GALLERY
+    // ==========================================================================
+    const stories = [
+        {
+            chapter: "Chapter 1 of 5",
+            date: "August 16, 2024",
+            title: "The Moment I Met You",
+            image: "assets/images/preeti1.jpg",
+            story: "The very first time I looked into your eyes, Preeti, time completely stopped. I knew right then that my life had changed forever. Those spellbinding dark eyes became my absolute favorite sight in the universe.",
+            note: "Preeti, you stole my heart with a single glance. I will never forget how bright the world felt at that exact moment. 💕"
+        },
+        {
+            chapter: "Chapter 2 of 5",
+            date: "Late 2024",
+            title: "Conversations Under the Stars",
+            image: "assets/images/preeti2.jpg",
+            story: "Remember those endless late-night phone calls where we shared our deepest dreams, secrets, and silly laughs until dawn? Listening to your sweet voice became the comforting highlight of my every single day.",
+            note: "Every word you speak feels like music to my soul. You brought warmth and comfort into my life. 🌌"
+        },
+        {
+            chapter: "Chapter 3 of 5",
+            date: "2025",
+            title: "Grace, Strength & Beauty",
+            image: "assets/images/preeti3.jpg",
+            story: "Watching you walk with such grace, dignity, and kindness makes me the proudest man alive. Your inner strength and gentle soul inspire me to be better every day.",
+            note: "You carry yourself like a true queen. Your heart is pure gold, Preeti. 👑"
+        },
+        {
+            chapter: "Chapter 4 of 5",
+            date: "August 2025",
+            title: "My Favorite Smile in the World",
+            image: "assets/images/preeti4.jpg",
+            story: "Whenever I have a long or difficult day, all it takes is one look at your smile to make everything better. You are my sunshine, my comfort, and my peace.",
+            note: "Your soft laugh is my absolute favorite sound on Earth. Keep smiling forever, my love! ☀️"
+        },
+        {
+            chapter: "Chapter 5 of 5",
+            date: "August 16, 2026",
+            title: "Virat & Preeti: 2 Years & Forever",
+            image: "assets/images/virat_preeti_hero.png",
+            story: "Happy 2nd Anniversary, Preeti! 2 full years of unconditional love, hand in hand. 730+ days of happiness and laughter. This is just the beginning of our lifetime adventure together!",
+            note: "I loved you yesterday, I love you today, and I will love you forever & always! 💍"
+        }
+    ];
+
+    let currentStoryIndex = 0;
+    const storyCard3D = document.getElementById('story-card-3d');
+    const storyBadge = document.getElementById('story-badge');
+    const storyDateTag = document.getElementById('story-date-tag');
+    const storyTitle = document.getElementById('story-title');
+    const storyParagraph = document.getElementById('story-paragraph');
+    const storyImg = document.getElementById('story-img');
+    const storyNoteText = document.getElementById('story-note-text');
+    const storyDots = document.querySelectorAll('.story-dot');
+    const prevBtn = document.getElementById('story-prev-btn');
+    const nextBtn = document.getElementById('story-next-btn');
+    const flipCardBtn = document.getElementById('flip-card-btn');
+    const flipBackBtn = document.getElementById('flip-back-btn');
+
+    function renderStory(index) {
+        if (index < 0) index = stories.length - 1;
+        if (index >= stories.length) index = 0;
+        currentStoryIndex = index;
+
+        const data = stories[currentStoryIndex];
+
+        // Reset flip state if flipped
+        if (storyCard3D) storyCard3D.classList.remove('flipped');
+
+        if (storyBadge) storyBadge.textContent = data.chapter;
+        if (storyDateTag) storyDateTag.textContent = data.date;
+        if (storyTitle) storyTitle.textContent = data.title;
+        if (storyParagraph) storyParagraph.textContent = `"${data.story}"`;
+        if (storyImg) storyImg.src = data.image;
+        if (storyNoteText) storyNoteText.textContent = data.note;
+
+        // Update Dots
+        storyDots.forEach((dot, idx) => {
+            if (idx === currentStoryIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { renderStory(currentStoryIndex - 1); triggerConfetti(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { renderStory(currentStoryIndex + 1); triggerConfetti(); });
+    if (flipCardBtn && storyCard3D) flipCardBtn.addEventListener('click', () => storyCard3D.classList.add('flipped'));
+    if (flipBackBtn && storyCard3D) flipBackBtn.addEventListener('click', () => storyCard3D.classList.remove('flipped'));
+
+    storyDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const idx = parseInt(dot.getAttribute('data-index'));
+            renderStory(idx);
+            triggerConfetti();
+        });
+    });
+
+    renderStory(0);
+
+    // 7. Polaroid Lightbox Modal
     const polaroidCards = document.querySelectorAll('.polaroid-card');
     const lightboxModal = document.getElementById('lightbox-modal');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -220,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Interactive Love Jar (100 Reasons Generator)
+    // 8. Interactive Love Jar (100 Reasons Generator)
     const reasons = [
         "Your beautiful dark eyes that steal my heart every single time I look at you. ✨",
         "The gentle way you smile when you're genuinely happy. 😊",
@@ -258,15 +393,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Secret Love Lock & Letter Reveal
+    // 9. Secret Love Lock & Letter Reveal
     const unlockBtn = document.getElementById('unlock-letter-btn');
     const passInput = document.getElementById('lock-pass-input');
     const secretPaper = document.getElementById('secret-paper');
 
     if (unlockBtn && secretPaper) {
         unlockBtn.addEventListener('click', () => {
-            const pass = passInput ? passInput.value.trim().toLowerCase() : '';
-            // Accepts 16, 2024, virat, preeti, love, or empty (defaults to unlock)
             secretPaper.classList.add('unlocked');
             unlockBtn.innerHTML = '❤️ Letter Unlocked for Preeti';
             unlockBtn.classList.remove('btn-gold');
@@ -275,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 8. Interactive Quiz
+    // 10. Interactive Quiz
     const quizOptions = document.querySelectorAll('.quiz-option');
     const quizFeedback = document.getElementById('quiz-feedback');
 
@@ -283,7 +416,6 @@ document.addEventListener('DOMContentLoaded', () => {
         opt.addEventListener('click', () => {
             const isCorrect = opt.getAttribute('data-correct') === 'true';
             
-            // Remove previous classes in group
             const parent = opt.parentElement;
             parent.querySelectorAll('.quiz-option').forEach(o => {
                 o.classList.remove('correct', 'wrong');
@@ -306,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 9. Wish Generator Wall
+    // 11. Wish Generator Wall
     const addWishBtn = document.getElementById('add-wish-btn');
     const wishInput = document.getElementById('wish-input');
     const wishesWall = document.getElementById('wishes-wall');
@@ -325,12 +457,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 10. Helper Utilities: Confetti Trigger
+    // 12. Helper Utilities: Confetti Trigger
     function triggerConfetti() {
         if (typeof confetti === 'function') {
             confetti({
-                particleCount: 70,
-                spread: 60,
+                particleCount: 75,
+                spread: 70,
                 origin: { y: 0.7 },
                 colors: ['#ff4d6d', '#ffb703', '#ff8fa3', '#ffffff']
             });
