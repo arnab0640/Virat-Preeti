@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virat & Preeti — 2nd Happy Anniversary Celebration ❤️</title>
+    <meta name="description" content="Celebrating 2 Years of magical togetherness, endless love, and beautiful memories of Virat & Preeti. Anniversary Date: August 16, 2024 - 2026.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Ambient Glowing Background Lights -->
+    <div class="ambient-light ambient-light-1"></div>
+    <div class="ambient-light ambient-light-2"></div>
+    <div class="ambient-light ambient-light-3"></div>
+
+    <!-- Floating Particles Canvas -->
+    <canvas id="heart-canvas"></canvas>
+
+    <!-- Background Audio Element -->
+    <audio id="bg-music" loop preload="auto">
+        <!-- High Quality Romantic Royalty-Free Audio Stream -->
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-acoustic-guitar-114488.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Music Controller Widget -->
+    <div class="music-player-widget">
+        <div class="music-disc" id="music-toggle-btn" title="Click to Play/Pause Love Song">
+            <i class="fa-solid fa-music"></i>
+        </div>
+        <div class="music-info" id="music-disc">
+            <span class="music-title">Virat & Preeti Melody</span>
+            <span class="music-status" id="music-status">Click to Play 🎵</span>
+        </div>
+    </div>
+
+    <!-- Secret Envelope Gate Modal -->
+    <div class="modal-overlay" id="welcome-modal">
+        <div class="envelope-card">
+            <div class="envelope-icon">
+                <i class="fa-solid fa-envelope-open-text"></i>
+            </div>
+            <h2 class="envelope-title">A Special Love Note</h2>
+            <p class="envelope-subtitle">For Preeti from Virat • 2nd Anniversary Surprise</p>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 25px;">
+                You are invited to step inside our magical world of 2 years of love, laughs & memories!
+            </p>
+            <button class="btn-primary" id="open-surprise-btn">
+                <i class="fa-solid fa-heart"></i> Open My Surprise
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="couple-badge">
+                <i class="fa-solid fa-sparkles"></i> Happy 2nd Anniversary • 16th August <i class="fa-solid fa-sparkles"></i>
+            </div>
+            
+            <div class="hero-avatar-frame">
+                <img src="assets/images/virat_preeti_hero.png" alt="Virat and Preeti">
+                <div class="hero-avatar-badge">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+            </div>
+
+            <h1 class="hero-title">
+                2 Years of Endless Love
+                <span class="couple-names">Virat & Preeti</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                "From August 16th, 2024 to eternity — every single second spent with you has been a blessing. Thank you for being my dream come true, Preeti."
+            </p>
+
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                <a href="#counters" class="btn-primary">
+                    <i class="fa-solid fa-clock"></i> Our Live Counter
+                </a>
+                <a href="#gallery" class="btn-gold">
+                    <i class="fa-solid fa-images"></i> Preeti's Album
+                </a>
+            </div>
+        </section>
+
+        <!-- LIVE COUNTER & COUNTDOWN SECTION -->
+        <section class="counters-section" id="counters">
+            <div class="section-header">
+                <span class="section-subtitle">Counting Every Precious Second</span>
+                <h2 class="section-title">Our Love Journey in Numbers</h2>
+            </div>
+
+            <!-- Counter 1: Time Elapsed Since Aug 16, 2024 -->
+            <div class="counter-glass-card">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: white;">
+                            <i class="fa-solid fa-heart-pulse" style="color: var(--primary);"></i> Time Together Since Aug 16, 2024
+                        </h3>
+                        <p style="color: var(--accent-gold); font-size: 0.95rem;" id="time-summary">
+                            1 Year, 11 Months, 27 Days of Togetherness
+                        </p>
+                    </div>
+                    <span style="background: rgba(255,77,109,0.2); color: var(--accent-rose); padding: 6px 16px; border-radius: 30px; font-size: 0.85rem; border: 1px solid rgba(255,77,109,0.3);">
+                        Live Counter 💕
+                    </span>
+                </div>
+
+                <div class="counter-grid">
+                    <div class="counter-box">
+                        <div class="counter-number" id="elapsed-days">726</div>
+                        <div class="counter-label">Total Days</div>
+                    </div>
+                    <div class="counter-box">
+                        <div class="counter-number" id="elapsed-hours">00</div>
+                        <div class="counter-label">Hours</div>
+                    </div>
+                    <div class="counter-box">
+                        <div class="counter-number" id="elapsed-mins">00</div>
+                        <div class="counter-label">Minutes</div>
+                    </div>
+                    <div class="counter-box">
+                        <div class="counter-number" id="elapsed-secs">00</div>
+                        <div class="counter-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Counter 2: Countdown to 2nd Anniversary (Aug 16, 2026) -->
+            <div class="counter-glass-card">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: white;" id="countdown-title">
+                            <i class="fa-solid fa-cake-candles" style="color: var(--accent-gold);"></i> Countdown to 2nd Anniversary (16 Aug 2026)
+                        </h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Get ready for the grand 2 Years celebration! 🎉
+                        </p>
+                    </div>
+                </div>
+
+                <div class="counter-grid">
+                    <div class="counter-box">
+                        <div class="counter-number" id="cd-days">04</div>
+                        <div class="counter-label">Days Left</div>
+                    </div>
+                    <div class="counter-box">
+                        <div class="counter-number" id="cd-hours">19</div>
+                        <div class="counter-label">Hours</div>
+                    </div>
+                    <div class="counter-box">
+                        <div class="counter-number" id="cd-mins">50</div>
+                        <div class="counter-label">Minutes</div>
+                    </div>
+                    <div class="counter-box">
+                        <div class="counter-number" id="cd-secs">30</div>
+                        <div class="counter-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PREETI'S POLAROID PHOTO GALLERY -->
+        <section class="gallery-section" id="gallery">
+            <div class="section-header">
+                <span class="section-subtitle">Moments Frozen in Time</span>
+                <h2 class="section-title">Preeti's Polaroid Wall 📸</h2>
+                <p style="color: var(--text-muted); margin-top: 8px;">Click any photo to view full memory</p>
+            </div>
+
+            <div class="polaroid-grid">
+                <!-- Polaroid 1 -->
+                <div class="polaroid-card">
+                    <div class="polaroid-tape"></div>
+                    <div class="polaroid-img-wrapper">
+                        <img src="assets/images/preeti1.jpg" alt="Preeti Portrait 1">
+                    </div>
+                    <div class="polaroid-caption">Spellbinding Eyes ❤️</div>
+                </div>
+
+                <!-- Polaroid 2 -->
+                <div class="polaroid-card">
+                    <div class="polaroid-tape"></div>
+                    <div class="polaroid-img-wrapper">
+                        <img src="assets/images/preeti2.jpg" alt="Preeti Closeup 2">
+                    </div>
+                    <div class="polaroid-caption">Captivating Glow ✨</div>
+                </div>
+
+                <!-- Polaroid 3 -->
+                <div class="polaroid-card">
+                    <div class="polaroid-tape"></div>
+                    <div class="polaroid-img-wrapper">
+                        <img src="assets/images/preeti3.jpg" alt="Preeti Portrait 3">
+                    </div>
+                    <div class="polaroid-caption">Pure Elegance & Grace 👑</div>
+                </div>
+
+                <!-- Polaroid 4 -->
+                <div class="polaroid-card">
+                    <div class="polaroid-tape"></div>
+                    <div class="polaroid-img-wrapper">
+                        <img src="assets/images/preeti4.jpg" alt="Preeti Portrait 4">
+                    </div>
+                    <div class="polaroid-caption">My Favorite View 💖</div>
+                </div>
+
+                <!-- Polaroid 5 (Hero Illustration) -->
+                <div class="polaroid-card">
+                    <div class="polaroid-tape"></div>
+                    <div class="polaroid-img-wrapper">
+                        <img src="assets/images/virat_preeti_hero.png" alt="Virat & Preeti Together">
+                    </div>
+                    <div class="polaroid-caption">Virat & Preeti Forever 💍</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIGHTBOX MODAL -->
+        <div class="lightbox-modal" id="lightbox-modal">
+            <div class="lightbox-content">
+                <button class="lightbox-close" id="lightbox-close">&times;</button>
+                <img src="" id="lightbox-img" alt="Enlarged Memory">
+                <div class="lightbox-caption" id="lightbox-caption">Memory</div>
+            </div>
+        </div>
+
+        <!-- LOVE STORY TIMELINE -->
+        <section class="timeline-section" id="timeline">
+            <div class="section-header">
+                <span class="section-subtitle">Our Beautiful Journey</span>
+                <h2 class="section-title">Story of Virat & Preeti 📜</h2>
+            </div>
+
+            <div class="timeline">
+                <!-- Milestone 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">August 16, 2024</div>
+                        <h3 class="timeline-title">The Day It All Began 💖</h3>
+                        <p class="timeline-desc">
+                            The magical day our hearts connected and Virat & Preeti officially started writing our love story together.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Milestone 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Late 2024</div>
+                        <h3 class="timeline-title">Late Night Calls & Sweet Texts 📞</h3>
+                        <p class="timeline-desc">
+                            Endless hours talking about our dreams, sharing secrets, and falling deeper in love every single day.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Milestone 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">August 16, 2025</div>
+                        <h3 class="timeline-title">1st Anniversary Celebration 🎂</h3>
+                        <p class="timeline-desc">
+                            Completed 365 Days of togetherness! A year filled with unforgettable dates, warm hugs, and cherished memories.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Milestone 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">August 16, 2026</div>
+                        <h3 class="timeline-title">2nd Anniversary Milestone! 🎉</h3>
+                        <p class="timeline-desc">
+                            2 Full Years of unconditional love! Celebrating how far we've come and looking forward to a lifetime of happiness together.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOVE JAR / REASONS WHY I LOVE YOU -->
+        <section class="love-jar-section">
+            <div class="love-jar-card">
+                <div class="jar-icon-wrapper" id="pull-reason-btn" title="Click to pull a reason!">
+                    <i class="fa-solid fa-jar"></i>
+                </div>
+                <h2 style="font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 10px;">
+                    Reasons Why I Love You, Preeti 💌
+                </h2>
+                <p style="color: var(--text-secondary);">
+                    Tap the Jar below to pull out a sweet reason from Virat's heart!
+                </p>
+
+                <div class="reason-box" id="reason-text">
+                    "Click the button below to pick a reason why you mean the world to me..."
+                </div>
+
+                <button class="btn-gold" id="pull-reason-btn-2" onclick="document.getElementById('pull-reason-btn').click()">
+                    <i class="fa-solid fa-heart-circle-plus"></i> Pull a Reason from Love Jar
+                </button>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE QUIZ & SECRET LETTER SECTION -->
+        <section class="interactive-section">
+            <div class="section-header">
+                <span class="section-subtitle">Fun & Special Surprises</span>
+                <h2 class="section-title">Interactive Couples Corner</h2>
+            </div>
+
+            <div class="grid-2">
+                <!-- Mini Quiz Card -->
+                <div class="interactive-card">
+                    <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 15px; color: var(--accent-rose);">
+                        <i class="fa-solid fa-circle-question"></i> Preeti & Virat Quiz
+                    </h3>
+                    <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px;">
+                        Question: What is our official Anniversary Date?
+                    </p>
+
+                    <div>
+                        <div class="quiz-option" data-correct="false">
+                            <span>A) 1st January 2024</span>
+                            <i class="fa-regular fa-circle"></i>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span>B) 16th August 2024</span>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span>C) 14th February 2025</span>
+                            <i class="fa-regular fa-circle"></i>
+                        </div>
+                    </div>
+
+                    <div id="quiz-feedback" style="margin-top: 15px; font-weight: 600; text-align: center;"></div>
+                </div>
+
+                <!-- Secret Letter Unlock Card -->
+                <div class="secret-letter-card">
+                    <div style="font-size: 2.8rem; color: var(--accent-gold); margin-bottom: 10px;">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.6rem; color: white; margin-bottom: 8px;">
+                        Secret Love Letter
+                    </h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+                        Written specially by Virat for Preeti's eyes only ❤️
+                    </p>
+
+                    <button class="btn-gold" id="unlock-letter-btn">
+                        <i class="fa-solid fa-key"></i> Unlock Secret Letter
+                    </button>
+
+                    <!-- Unlocked Handwritten Letter -->
+                    <div class="secret-paper" id="secret-paper">
+                        <h4 style="font-family: var(--font-handwriting); font-size: 2rem; color: #8d0b41; text-align: center; margin-bottom: 15px;">
+                            My Dearest Preeti,
+                        </h4>
+                        <p>
+                            Happy 2nd Anniversary, my love! Looking back at the last 2 years since August 16th, 2024, my heart overflows with gratitude. From our first smiles to all our shared dreams, every moment spent with you has been the greatest joy of my life.
+                        </p>
+                        <p style="margin-top: 10px;">
+                            Your beautiful eyes, your caring soul, and your warmth light up my world every single day. I promise to stand by you, cherish you, hold your hand, and love you more with every passing second.
+                        </p>
+                        <p style="margin-top: 15px; text-align: right; font-weight: 700; color: #c9184a;">
+                            Forever Yours,<br>
+                            Virat 💕
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOVE WISHES WALL & STARRY SKY -->
+        <section class="wishes-section">
+            <div class="section-header">
+                <span class="section-subtitle">Make a Wish on Our Star</span>
+                <h2 class="section-title">2nd Anniversary Wishes Wall ✨</h2>
+            </div>
+
+            <div class="wish-input-box">
+                <input type="text" class="wish-input" id="wish-input" placeholder="Type a sweet wish for Virat & Preeti...">
+                <button class="btn-primary" id="add-wish-btn" style="padding: 10px 24px;">
+                    <i class="fa-solid fa-paper-plane"></i> Send Wish
+                </button>
+            </div>
+
+            <div class="wishes-wall" id="wishes-wall">
+                <div class="wish-pill">✨ Happy 2nd Anniversary Virat & Preeti!</div>
+                <div class="wish-pill">💖 May your love grow stronger every single day!</div>
+                <div class="wish-pill">🌹 Forever together & always happy!</div>
+                <div class="wish-pill">🥂 Cheers to 2 Years of magical togetherness!</div>
+                <div class="wish-pill">👑 Preeti, you look so gorgeous!</div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>
+                Crafted with endless love <span class="heart">❤️</span> by <strong>Virat</strong> for <strong>Preeti</strong>
+            </p>
+            <p style="font-size: 0.8rem; margin-top: 6px;">
+                August 16, 2024 — August 16, 2026 • 2nd Happy Anniversary Celebration
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- Custom JS App -->
+    <script src="js/app.js"></script>
+</body>
+</html>
