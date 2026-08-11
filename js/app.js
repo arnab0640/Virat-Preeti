@@ -198,23 +198,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const ytAudio = document.getElementById('yt-music-player');
+
     function toggleMusic(play) {
-        if (!bgAudio) return;
         const playerWidget = document.querySelector('.music-player-widget');
         if (play) {
-            bgAudio.load();
-            bgAudio.play().then(() => {
-                isPlayingAudio = true;
-                if (musicDisc) musicDisc.classList.add('playing');
-                if (playerWidget) playerWidget.classList.add('playing');
-                if (musicStatus) musicStatus.textContent = 'Playing Ed Sheeran — Perfect 🎵';
-            }).catch(err => {
-                console.log('Audio playback waiting for user click:', err);
-                isPlayingAudio = false;
-                if (musicStatus) musicStatus.textContent = 'Tap to Play Ed Sheeran 🎵';
-            });
+            isPlayingAudio = true;
+            if (musicDisc) musicDisc.classList.add('playing');
+            if (playerWidget) playerWidget.classList.add('playing');
+            if (musicStatus) musicStatus.textContent = 'Playing Ed Sheeran — Perfect 🎵';
+
+            // 1. Try HTML5 Audio
+            if (bgAudio) {
+                bgAudio.play().catch(err => {
+                    console.log('HTML5 audio waiting or falling back to YouTube audio engine:', err);
+                });
+            }
+
+            // 2. Play Official Ed Sheeran - Perfect via YouTube Audio Engine
+            if (ytAudio && ytAudio.contentWindow) {
+                ytAudio.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            }
         } else {
-            bgAudio.pause();
+            if (bgAudio) bgAudio.pause();
+            if (ytAudio && ytAudio.contentWindow) {
+                ytAudio.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            }
             isPlayingAudio = false;
             if (musicDisc) musicDisc.classList.remove('playing');
             if (playerWidget) playerWidget.classList.remove('playing');
